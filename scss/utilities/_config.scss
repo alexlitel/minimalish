@@ -1,0 +1,23 @@
+// ==========================================================================
+// Color
+// ==========================================================================
+$gradient: linear-gradient(-255deg, rgba(red, 0.15), rgba(orange, 0.15)); 
+$p-color: #444;
+$sec-color: white;
+$act-color: yellow;
+$bq-color: #9B9B9B;
+
+
+//Colors for social share buttons
+$social-share-colors: (
+twitter: #00aced,
+facebook: #3b5998,
+pinterest: #cb2027,
+linkedin: #007bb6,
+mail: $p-color
+);
+
+// ==========================================================================
+// Text
+// ==========================================================================
+

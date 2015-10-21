@@ -1,0 +1,79 @@
+// ==========================================================================
+// Universal-ish active states
+// ==========================================================================
+:focus, a:hover, a:active {
+    background: $act-color !important;
+    color: $p-color !important;
+    .post & {
+    	border-bottom: 2px solid;
+    }
+}
+ .header-box-icon-menu, .header-box-icon-search {
+
+ &:hover, &:focus {
+        &::before {
+   background: $act-color !important;
+    color: $p-color !important;
+
+}
+}
+}
+
+button:hover {
+	text-decoration: underline;
+}
+
+// ==========================================================================
+// Mobile Styles
+// ==========================================================================
+
+.mobile-only {
+    @media only screen and (min-width: 692px) {
+        display: none;
+    }
+}
+
+.mobile-toggle {
+    @media only screen and (max-width: 691px) {
+        &-hide {
+        display: none;
+    }
+    }
+}
+
+
+@media only screen and (max-width: 691px) {
+
+.has-shadow {
+    box-shadow: 0px 5px 10px 0px rgba($p-color, .2);
+}
+
+.is-fixed {
+    position: fixed;
+    top: 0;
+}
+
+.is-rotated {
+    &::before {
+        transform: rotateZ(90deg);
+        transition: transform 2s;
+    }
+}
+}
+
+// ==========================================================================
+// Post Share Icon Interaction States
+// ==========================================================================
+
+.post-footer-share-list-icon {
+    @include social-interaction-state-colors();
+
+   
+                border-bottom: none !important;
+
+                 &:hover, &:focus, &:active {
+                    border-bottom: none !important;
+                    background-color: transparent !important;
+                 }
+            
+}

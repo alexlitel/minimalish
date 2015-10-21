@@ -1,0 +1,39 @@
+.permalink-nav,
+.footer-nav {
+    text-align: center;
+    padding-bottom: 13px;
+    a {
+        font-size: 110%;
+        @extend %link-alt;
+        @media only screen and (min-width: 300px) {
+            padding: 6px;
+            border: none;
+            & + a {
+                margin: auto 20px;
+            }
+        }
+        @media only screen and (min-width: 430px) {
+            font-size: 120%;
+        }
+    }
+}
+
+.permalink-nav {
+    border-bottom: 1px solid;
+    margin-top: 22px;
+    padding-bottom: 34px;
+    a {
+        border: 1px solid;
+        background: $sec-color;
+        color: $p-color;
+    }
+}
+
+.theme-credit {
+    font-size: .8em;
+    padding: 12px 0;
+    text-align: center;
+    a {
+        border-bottom: 1px dotted;
+    }
+}

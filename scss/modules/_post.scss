@@ -1,0 +1,131 @@
+@charset "UTF-8";
+.post {
+    border-bottom: 3px solid $p-color;
+    padding: 12px;
+    position: relative;
+    @media only screen and (min-width: 600px) {
+        width: 85%;
+        margin: 0 auto;
+    }
+    a {
+        border-bottom: 1px dotted;
+        font-weight: 600;
+    }
+    &:first-child,
+    &:only-child {
+        @media only screen and (min-width: 692px) {
+            border-top: 3px solid $p-color;
+        }
+    }
+    img:not(.audio-post-data-album-art) {
+        padding: 8px;
+        border: 1px solid $p-color;
+    }
+}
+
+.answer-post {
+    &-question {
+        font-size: 1.2em;
+    }
+}
+
+.search-tag-header {
+    text-align: center;
+    font-size: 150%;
+    font-weight: 600;
+    padding: 4px;
+    border-bottom: 2px solid;
+    margin-bottom: 4px;
+}
+
+.no-results-header {
+    border-bottom: none !important;
+}
+
+.audio-post {
+    &-data {
+        width: 250px;
+        border: 1px solid;
+        margin: 0 auto;
+        &-song-title {
+            padding: 18px 18px 0;
+            font-size: 1.2em;
+            font-weight: 900;
+        }
+        &-artist {
+            padding: 0px 17px;
+        }
+        &-album-art {
+            max-width: 100px;
+            display: inline-block;
+            position: relative;
+            left: 128px;
+            top: -54px;
+            border: 1px solid;
+        }
+        &-native-player {
+            max-width: 250px;
+            margin: 0 auto;
+            position: relative;
+            top: -50px;
+        }
+        .spotify_audio_player {
+            @media only screen and (max-width: 500px) {
+                height: 80px !important;
+            }
+        }
+    }
+}
+
+.chat-post {
+    &-chat {
+        list-style: none;
+        -webkit-padding-start: 0px;
+        padding-left: 0px;
+        @media only screen and (min-width: 500px) {
+            -webkit-padding-start: 40px;
+        }
+        li {
+            padding: 10px 10px 10px 5px;
+        }
+        &-label {
+            font-weight: bold;
+            display: inline;
+        }
+        &-line {
+            &-even {
+                @extend %link-alt;
+            }
+            &-actual-line {
+                display: inline;
+            }
+        }
+    }
+}
+
+.quote-post {
+    &-quote {
+        margin: auto 0 3px;
+        padding: 12px;
+        font-size: 1.3em;
+        quotes: "“" "”" "‘" "’";
+        @extend %link-alt;
+        &::before,
+        &::after {
+            font-weight: 900;
+            position: relative;
+            top: -4px;
+        }
+        &::before {
+            content: open-quote;
+            padding-right: 4px;
+        }
+        &::after {
+            content: close-quote;
+            padding-left: 4px;
+        }
+        &+ .post-text {
+            margin-top: 15px;
+        }
+    }
+}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- minimalish theme by alex litel -->
+
+<head>
+    <title>{block:TagPage}Posts Tagged "{Tag}" | {/block:TagPage}{block:SearchPage}Post Containing "{SearchQuery}" | {/block:SearchPage} {block:PostSummary}{PostSummary} | {/block:PostSummary}{Title}</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="{MetaDescription}" />
+    {block:Hidden}
+    <meta name="text:Google Site Verification Code" content="" />
+    <meta name="text:Email Address" content="" />
+    <meta name="text:Website URL" content="" />
+    <meta name="text:Github Username" content="" />
+    <meta name="text:Instagram Username" content="" />
+    <meta name="text:Twitter Username" content="" />
+    <meta name="google-site-verification" content="{text:Google Site Verification Code}" />
+    <meta name="text:Google analytics ID" content=""> {/block:Hidden}
+    <meta name="keywords" content="{block:Tags}{Tag}, {/block:Tags}{Title}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header class="header">
+            <div class="header-box">
+                <div class="header-box-row-one">
+                    <span id="menu-toggle" title="Click or tap or press enter to reveal menu on mobile" class="tumblr-icon-menu header-box-icon-menu mobile-only"></span>
+                    <div class="header-box-title">
+                        <a href="http://{Name}.tumblr.com">
+                            <span>the</span>
+                            <span>epitome</span>
+                            <span>of</span>
+                            <span>profundity</span>
+                        </a>
+                    </div>
+                    <span id="search-toggle" title="Click or tap or press enter to reveal search on mobile" class="tumblr-icon-search header-box-icon-search mobile-only"></span> {block:Description}
+                    <div class="header-box-description">
+                        {Description}
+                    </div>
+                    {/block:Description}
+                </div>
+                <div class="header-box-row-two">
+                    <nav class="header-box-link-list mobile-toggle" role="navigation">
+                        <a class="header-box-link-list-item" href="http://{Name}.tumblr.com">Home</a>
+                        <a class="header-box-link-list-item" href="http://{Name}.tumblr.com/archive/">Archive</a>
+                        <a class="header-box-link-list-item" href="http://www.{text:Website URL}">Website</a>
+                        <a class="header-box-link-list-item" href="mailto:{text:Email Address}">Email</a>
+                        <a class="header-box-link-list-item" href="http://www.twitter.com/{text:Twitter Username}">Twitter</a>
+                        <a class="header-box-link-list-item" href="http://instagram.com/{text:Instagram Username}">Instagram</a>
+                        <a class="header-box-link-list-item" href="http://github.com/{text:Github Username}">Github</a>
+                        <a class="header-box-link-list-item" href="http://alexlitel.tumblr.com/tagged/art">Art</a>
+                    </nav>
+                    <div class="header-box-form mobile-toggle">
+                        <form action="/search" method="get">
+                            <input class="field text header-box-input" id="q" name="q" title="Search" type="text" value="{SearchQuery}" placeholder="" />
+                            <button class="field button header-box-submit" title="Search" type="submit" value="search posts">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="posts">
+                {block:PermalinkPagination}
+                <div class="permalink-nav">
+                    {block:PreviousPost}
+                    <a href="{PreviousPost}">Previous Post</a> {/block:PreviousPost} {block:NextPost}
+                    <a href="{NextPost}">Next Post</a> {/block:NextPost}
+                </div>
+                {/block:PermalinkPagination} {block:SearchPage} {block:SearchResults}
+                <div class="search-tag-header results-header">There are {SearchResultCount} posts containing "{SearchQuery}"</div>
+                {/block:SearchResults} {block:NoSearchResults}
+                <div class="search-tag-header no-results-header">Sorry, there are no posts containing "{SearchQuery}"</div>
+                {/block:NoSearchResults} {/block:SearchPage} {block:TagPage}
+                <div class="search-tag-header tag-page-header">Posts tagged "{Tag}"</div>
+                {/block:TagPage} {block:Posts}
+                <article class="post">
+                    {block:Text}
+                    <div class="text-post">
+                        {block:Title}
+                        <h1 class="text-post-title">
+                        <a href="{Permalink}">{Title}</a>
+                    </h1> {/block:Title}
+                        <div class="text-post-body post-text">
+                            {Body}
+                        </div>
+                    </div>
+                    {/block:Text} {block:Photo}
+                    <div class="photo-post">
+                        {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag} {block:Caption}
+                        <div class="post-text">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                    {/block:Photo} {block:Photoset}
+                    <div class="photoset-post">
+                        {Photoset} {block:Caption}
+                        <div class="post-text">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                    {/block:Photoset} {block:Panorama}
+                    <div class="panorama-post">
+                        {LinkOpenTag}
+                        <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" /> {LinkCloseTag} {block:Caption}
+                        <div class="post-text">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                    {/block:Panorama} {block:Quote}
+                    <div class="quote-post">
+                        <blockquote class="quote-post-quote">{Quote}</blockquote>
+                        {block:Source}
+                        <div class="post-text"> {Source} </div>
+                        {/block:Source}
+                    </div>
+                    {/block:Quote} {block:Link}
+                    <div class="link-post">
+                        <h1 class="link-post-link"><a href="{URL}">{Name}</a></h1> {block:Description}
+                        <div class="post-text">{Description}</div>
+                        {/block:Description}
+                    </div>
+                    {/block:Link} {block:Chat}
+                    <div class="chat-post">
+                        {block:Title}
+                        <h1 class="chat-post-title"><a href="{Permalink}">{Title}</a></h1> {/block:Title}
+                        <ul class="chat-post-chat">
+                            {block:Lines}
+                            <li class="chat-post-chat-line-{Alt}">{block:Label}<span class="chat-post-chat-label">{Label}</span> {/block:Label}
+                                <p class="chat-post-chat-line-actual-line"> {Line} </p>
+                            </li>
+                            {/block:Lines}
+                        </ul>
+                    </div>
+                    {/block:Chat} {block:Audio}
+                    <div class="audio-post">
+                        {block:AudioPlayer}
+                        <div class="audio-post-data">
+                            {block:TrackName}
+                            <div class="audio-post-data-song-title">"{TrackName}"</div>
+                            {/block:TrackName} {block:Artist}
+                            <div class="audio-post-data-artist">{Artist}</div>
+                            {/block:Artist} {block:AlbumArt}
+                            <img class="audio-post-data-album-art" src="{AlbumArtURL}" /> {/block:AlbumArt}
+                        </div>
+                        <div class="audio-post-native-player">{AudioPlayer}</div>
+                        {/block:AudioPlayer} {block:AudioEmbed}
+                        <div class="audio-post-embed">{AudioEmbed}</div>
+                        {/block:AudioEmbed} {block:Caption}
+                        <div class="post-text">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                    {/block:Audio} {block:Video}
+                    <div class="video-post">
+                        <div class="video-post-layer">{Video-500}</div>
+                        {block:Caption}
+                        <div class="post-text">{Caption}</div>
+                        {/block:Caption}
+                    </div>
+                    {/block:Video} {block:Answer}
+                    <div class="answer-post">
+                        <div class="answer-user">
+                            <span class="asker-name">{Asker}</span> <span class="asker-asked">asked:</span>
+                        </div>
+                        <h1 class="answer-post-question">{Question}</h1>
+                        <div class="post-text">{Answer}</div>
+                    </div>
+                    {/block:Answer}
+                    <div class="post-footer">
+                        <div class="post-footer-row-datenotes">
+                            {block:Date}
+                            <time class="post-footer-text post-footer-date">
+                                <a href="{Permalink}">{ShortMonth} {DayOfMonth}, {Year} {12Hour}:{Minutes} {AmPm}</a>
+                            </time>
+                            {/block:Date}
+                            <span class="post-footer-text post-footer-note-count">
+                        <a href="{Permalink}">{NoteCountWithLabel}</a>
+                         {block:RebloggedFrom} <span class="post-footer-text post-footer-attrib">(via <a href="{ReblogParentURL}">{ReblogParentName}</a>)</span>  {/block:RebloggedFrom}
+                    </span>
+                        </div>
+                        {block:HasTags}
+                        <div class="post-footer-row-tags">
+                            <div class="post-footer-text post-footer-tags">
+                                <ul class="post-footer-text post-footer-tags-list">
+                                    <span class="post-footer-tags-name">Tags</span> {block:Tags}
+                                    <li class="post-footer-tags-list-item"><a href="{TagURL}">{Tag}</a> </li>
+                                    {/block:Tags}
+                                </ul>
+                            </div>
+                        </div>
+                        {/block:HasTags}
+                        <div class="post-footer-row-share">
+                            <ul class="post-footer-share-list">
+                                <span class="post-footer-text post-footer-share-list-description">Share</span>
+                                <li class="post-footer-share-list-item">
+                                    <a href="mailto:?subject={URLEncodedShareString}&amp;body={URLEncodedMailSummary}" target="_blank" title="Email this post. Link opens a new window." class="tumblr-icon-mail post-footer-share-list-icon post-footer-share-list-icon-mail"></a>
+                                </li>
+                                <li class="post-footer-share-list-item">
+                                    <a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" target="_blank" title="Share on Facebook. Link opens a new window." class="tumblr-icon-facebook post-footer-share-list-icon post-footer-share-list-icon-facebook"></a>
+                                </li>
+                                <li class="post-footer-share-list-item">
+                                    <a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" target="_blank" title="Share on Twitter. Link opens a new window." class="tumblr-icon-twitter post-footer-share-list-icon post-footer-share-list-icon-twitter"></a>
+                                </li>
+                                <li class="post-footer-share-list-item">
+                                    <a href="https://linkedin.com/shareArticle?url={URLEncodedPermalink}&title={URLEncodedTitle}" target="_blank" title="Share on LinkedIn. Link opens a new window." class="tumblr-icon-linkedin post-footer-share-list-icon post-footer-share-list-icon-linkedin"></a>
+                                </li>
+                                <li class="post-footer-share-list-item">
+                                    <a href="http://www.pinterest.com/pin/create/button/?url={URLEncodedPermalink}&amp;media={PhotoURL-500}" target="_blank" title="Share on Pinterest. Link opens a new window." class="tumblr-icon-pinterest post-footer-share-list-icon post-footer-share-list-icon-pinterest"></a>
+                                </li>
+                            </ul>
+                        </div>
+                </article>
+                {/block:Posts} {block:PermalinkPage} {/block:PermalinkPage}
+                </div>
+                <footer class="footer">
+                    {block:Pagination}
+                    <div class="footer-nav">
+                        {block:PreviousPage}
+                        <a href="{PreviousPage}">Previous Page</a> {/block:PreviousPage} {block:NextPage}
+                        <a href="{NextPage}">Next Page</a> {/block:NextPage}
+                    </div>
+                    {/block:Pagination}
+                    <div class="theme-credit">Powered by the <a href="http://www.github.com">minimalish theme</a></div>
+                </footer>
+</body>
+
+<script>
+    function resizePhotosets(){
+    var parentWidth = document.body.querySelector('.html_photoset').offsetWidth; 
+    var photosets = document.body.querySelectorAll('iframe.photoset');
+    for(var i = 0; i < photosets.length; ++i){
+        var photoset = photosets[i];
+        photoset.width = parentWidth;
+    }   
+}
+window.onload = resizePhotosets;
+window.onresize = resizePhotosets;
+</script>
+
+ {block:IfGoogleAnalyticsID}
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', '{text:Google Analytics ID}', 'auto');
+    ga('send', 'pageview');
+    </script>
+    {/block:IfGoogleAnalyticsID}
+</html>

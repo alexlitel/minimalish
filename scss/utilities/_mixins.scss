@@ -1,0 +1,67 @@
+// ==========================================================================
+// Colors for social shares and interactions
+// ==========================================================================
+//Unused mixin for lightened social share colors
+@mixin social-share-colors() {
+    @each $site,  $color in $social-share-colors {
+        &-#{$site} {
+            &::before {
+                background-color: rgba($color, .4);
+            }
+        }
+    }
+}
+
+@mixin social-interaction-state-colors() {
+    @each $site, $color in $social-share-colors {
+        &-#{$site} {
+            &:hover::before,
+            &:focus::before,
+            &:active::before {
+                background-color: #{$color};
+            }
+        }
+    }
+}
+
+// ==========================================================================
+// Adjustments for header icons
+// ==========================================================================
+@mixin header-icon-adjustments($width, $size:null, $margin:null) {
+    @media only screen and (min-width: #{$width}px) {
+      @if $size != null {
+        &-menu, &-search {
+          font-size: 1em+($size*.1);
+        }
+      }
+      @if $margin != null {
+        &-menu {
+            left: percentage($margin*.01);
+        }
+        &-search {
+            margin-left: percentage($margin*.01);
+        }
+    }
+      
+    }
+}
+
+@mixin header-icon-loop {
+    @for $i from 0 through 5 {
+    @media only screen and (min-width: 300px + (70*$i)) {
+
+        &-menu, &-search {
+          font-size: 1em+($i*.2);
+   }
+
+        &-menu {
+            left: percentage($i*.01);
+        }
+        &-search {
+            right: percentage($i*.01);
+        }
+}
+      
+    }
+
+}

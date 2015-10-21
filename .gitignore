@@ -1,0 +1,28 @@
+##OSX stuff
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+##Non-template HTML pages (testing, et al)
+boilerplate.html
+default.html
+index.html
+boilerplate2.html
+oldtheme.html
+/testpages
+/tumblr_icons
+
+#Testing JS
+js/default.js
+
+
+##Sublime Text stuff
+*.sublime-project
+*.sublime-workspace
+tumblr-theme.sublime-project
+tumblr-theme.sublime-workspace
