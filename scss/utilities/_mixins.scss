@@ -3,7 +3,8 @@
 // ==========================================================================
 //Unused mixin for lightened social share colors
 @mixin social-share-colors() {
-    @each $site,  $color in $social-share-colors {
+    @each $site,
+    $color in $social-share-colors {
         &-#{$site} {
             &::before {
                 background-color: rgba($color, .4);
@@ -13,7 +14,8 @@
 }
 
 @mixin social-interaction-state-colors() {
-    @each $site, $color in $social-share-colors {
+    @each $site,
+    $color in $social-share-colors {
         &-#{$site} {
             &:hover::before,
             &:focus::before,
@@ -25,43 +27,64 @@
 }
 
 // ==========================================================================
+// Media query mixin 
+// ==========================================================================
+@mixin m-q($size, $min: null, $max: null) {
+    @if $size=="min" {
+        @media only screen and (min-width: #{$min}) {
+            @content;
+        }
+    } @else if $size=="max" {
+        @media only screen and (max-width: #{$max}) {
+            @content;
+        }
+    } @else if $size=="minmax" {
+        @media only screen and (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    }
+}
+
+// ==========================================================================
 // Adjustments for header icons
 // ==========================================================================
-@mixin header-icon-adjustments($width, $size:null, $margin:null) {
-    @media only screen and (min-width: #{$width}px) {
-      @if $size != null {
-        &-menu, &-search {
-          font-size: 1em+($size*.1);
-        }
-      }
-      @if $margin != null {
-        &-menu {
-            left: percentage($margin*.01);
-        }
-        &-search {
-            margin-left: percentage($margin*.01);
-        }
-    }
-      
-    }
-}
-
-@mixin header-icon-loop {
+@mixin header-icon-loop() {
     @for $i from 0 through 5 {
-    @media only screen and (min-width: 300px + (70*$i)) {
-
-        &-menu, &-search {
-          font-size: 1em+($i*.2);
-   }
-
-        &-menu {
-            left: percentage($i*.01);
+        @include m-q(min, 300px + (70*$i)) {
+            &-menu,
+            &-search {
+                font-size: 1.4em+($i*.1);
+            }
+            &-menu {
+                left: percentage($i*.01);
+            }
+            &-search {
+                right: percentage($i*.01);
+            }
         }
-        &-search {
-            right: percentage($i*.01);
-        }
-}
-      
     }
-
 }
+
+
+
+
+// ==========================================================================
+// Padding for content area of sizes with fixed header
+// ==========================================================================
+@mixin content-padding() {
+  
+  $lengths: (
+    first: ( height: 71px, min-width: 235px,  max-width: 349px ),
+    second: ( height: 74px, min-width: 350px, max-width: 414px ),
+    third: ( height: 78px, min-width: 415px, max-width: 614px ),
+    last: ( height: 86px, min-width: 615px, max-width: 691px )
+);
+
+ @each $length, $props in $lengths {
+    @include m-q(minmax, map-get($props, min-width), map-get($props, max-width)) {
+      padding-top: map-get($props, height);
+    }
+  }
+}
+
+

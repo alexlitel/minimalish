@@ -2,12 +2,7 @@
     text-align: center;
     position: relative;
     width: 100%;
-    padding: 22px 13px;
-    &-note-count {
-        @media only screen and (min-width: 497px) {
-            margin-right: 20px;
-        }
-    }
+    padding: 22px 13px 0px;
     &-row {
         &-datenotes,
         &-tags,
@@ -26,7 +21,7 @@
         &-datenotes {
             time {
                 margin-right: 10px;
-                @media only screen and (min-width: 320px) {
+                @include m-q(min, 320px) {
                     margin-right: 20px;
                 }
             }
@@ -41,7 +36,7 @@
     &-attrib {
         color: rgba($p-color, 0.7);
         text-transform: lowercase;
-        @media only screen and (max-width: 496px) {
+        @include m-q(max, $max: 496px) {
             display: block;
             text-align: center;
             margin: 8px auto;
@@ -49,8 +44,9 @@
                 font-weight: normal;
             }
         }
-        @media only screen and (min-width: 497px) {
+        @include m-q(min, 497px) {
             display: inline-block;
+            margin-left: 20px;
         }
     }
 }
@@ -66,7 +62,7 @@
         color: rgba($p-color, 0.51);
         font-weight: bold;
         background: white;
-        z-index: 20;
+        z-index: 10;
     }
     &-list {
         list-style: none;
@@ -98,7 +94,7 @@
             font-weight: bold;
             text-transform: uppercase;
             padding: 7px;
-            @media only screen and (min-width: 400px) {
+            @include m-q(min, 400px) {
                 display: inline-block;
             }
         }
@@ -112,7 +108,7 @@
             padding: 7px;
             margin: auto;
             border-radius: 100%;
-            @media only screen and (max-width: 300px) {
+            @include m-q(max, $max: 300px) {
                 font-size: 80%;
             }
         }

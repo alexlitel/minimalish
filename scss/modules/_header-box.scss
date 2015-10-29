@@ -1,11 +1,12 @@
 .header-box {
     width: 100%;
+    @include m-q(min, 692px) {
     padding: 13px;
+}
     /* vertical-align: middle; */
     margin: 0 auto;
     height: 100%;
     text-align: center;
-    z-index: 20;
 }
 
 [class^="header-box-row"] {
@@ -16,7 +17,7 @@
 
 .header-box-row-one {
     margin-bottom: 2px;
-    @media only screen and (max-width: 691px) {
+    @include m-q(max, $max: 691px) {
         a {
             vertical-align: middle;
         }
@@ -33,16 +34,16 @@
     position: relative;
     font-weight: 300;
     font-size: .85em;
-    @media only screen and (min-width: 350px) {
+    @include m-q(min, 350px) {
         font-size: 1em;
     }
-    @media only screen and (min-width: 415px) {
+    @include m-q(min, 415px) {
         font-size: 1.2em;
     }
-    @media only screen and (min-width: 615px) {
+    @include m-q(min, 615px) {
         font-size: 1.5em;
     }
-    @media only screen and (min-width: 730px) {
+    @include m-q(min, 730px) {
         font-size: 1.9em;
     }
 }
@@ -61,17 +62,17 @@
         position: absolute;
         left: 10px;
         display: block;
-        @media only screen and (min-width: 615px) and (max-width: 729px) {
-            left: 12px;
-        }
-        @media only screen and (min-width:730px) {
+        @include m-q(minmax, 615px, 729px) {
             left: 13px;
+        }
+        @include m-q(min,730px) {
+            left: 15px;
         }
     }
 }
 
 .header-box-title a span:nth-child(odd) {
-    @media only screen and (min-width: 600px) {
+    @include m-q(min, 600px) {
         margin: -4px 4px;
     }
     padding: 6px;
@@ -90,7 +91,7 @@
 
 .header-box-description {
     display: none;
-    @media only screen and (min-width: 720px) {
+    @include m-q(min, 720px) {
         text-align: center;
         font-size: 90%;
         display: block;
@@ -130,7 +131,7 @@
     position: relative;
     display: block;
     text-align: center;
-    @media only screen and (min-width: 692px) {
+    @include m-q(min, 692px) {
         display: inline-block;
         margin: 16px auto;
     }
@@ -138,11 +139,14 @@
 }
 
 .header-box-link-list-item {
-    @media only screen and (max-width: 691px) {
-        display: block;
+    @include m-q(max, $max: 691px) {
+            display: inline-block;
+            width: 40%;
+        
         background-color: $p-color;
         color: $sec-color;
         margin: 3px auto;
+
     }
     text-decoration: none;
     padding: .6em;
@@ -150,7 +154,7 @@
     font-weight: 600;
     color: $p-color;
     &:last-child {
-        @media only screen and (max-width: 691px) {
+        @include m-q(max, $max: 691px) {
             margin-bottom: 25px;
         }
     }
@@ -161,6 +165,9 @@
     display: block;
     clear: both;
     color: $p-color;
+    @include m-q(max, $max: 691px) {
+            padding-bottom: 13px;
+    }
     input,
     button {
         border: 1px solid rgba($p-color, 0.9);
@@ -171,7 +178,9 @@
         text-transform: none;
         height: 40px;
         width: 70%;
-        @media only screen and (min-width: 692px) {
+        -webkit-appearance: none;
+         border-radius:0;
+        @include m-q(min, 692px) {
             width: 250px;
         }
     }
@@ -185,4 +194,4 @@
     }
 }
 
-@media only screen and (min-width: 1600px) {}
+@include m-q(min, 1600px) {}

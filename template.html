@@ -5,16 +5,15 @@
 <head>
     <title>{block:TagPage}Posts Tagged "{Tag}" | {/block:TagPage}{block:SearchPage}Post Containing "{SearchQuery}" | {/block:SearchPage} {block:PostSummary}{PostSummary} | {/block:PostSummary}{Title}</title>
     <meta charset="utf-8" />
-    <meta name="description" content="{MetaDescription}" />
-    {block:Hidden}
+    <meta name="description" content="{MetaDescription}" /> {block:Hidden}
     <meta name="text:Google Site Verification Code" content="" />
     <meta name="text:Email Address" content="" />
     <meta name="text:Website URL" content="" />
     <meta name="text:Github Username" content="" />
     <meta name="text:Instagram Username" content="" />
     <meta name="text:Twitter Username" content="" />
-    <meta name="google-site-verification" content="{text:Google Site Verification Code}" />
     <meta name="text:Google analytics ID" content=""> {/block:Hidden}
+    <meta name="google-site-verification" content="{text:Google Site Verification Code}" />
     <meta name="keywords" content="{block:Tags}{Tag}, {/block:Tags}{Title}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
@@ -23,10 +22,10 @@
 
 <body>
     <div id="wrapper">
-        <header class="header">
+        <header class="header is-fixed has-shadow">
             <div class="header-box">
                 <div class="header-box-row-one">
-                    <span id="menu-toggle" title="Click or tap or press enter to reveal menu on mobile" class="tumblr-icon-menu header-box-icon-menu mobile-only"></span>
+                    <a href="#" id="menu-toggle" title="Click or tap or press enter to reveal menu on mobile" class="tumblr-icon-menu header-box-icon-menu mobile-only"></a>
                     <div class="header-box-title">
                         <a href="http://{Name}.tumblr.com">
                             <span>the</span>
@@ -35,14 +34,14 @@
                             <span>profundity</span>
                         </a>
                     </div>
-                    <span id="search-toggle" title="Click or tap or press enter to reveal search on mobile" class="tumblr-icon-search header-box-icon-search mobile-only"></span> {block:Description}
+                    <a href="#" id="search-toggle"title="Click or tap or press enter to reveal search on mobile" class="tumblr-icon-search header-box-icon-search mobile-only"></a> {block:Description}
                     <div class="header-box-description">
                         {Description}
                     </div>
                     {/block:Description}
                 </div>
                 <div class="header-box-row-two">
-                    <nav class="header-box-link-list mobile-toggle" role="navigation">
+                    <nav class="header-box-link-list mobile-toggle-hide" role="navigation">
                         <a class="header-box-link-list-item" href="http://{Name}.tumblr.com">Home</a>
                         <a class="header-box-link-list-item" href="http://{Name}.tumblr.com/archive/">Archive</a>
                         <a class="header-box-link-list-item" href="http://www.{text:Website URL}">Website</a>
@@ -52,7 +51,7 @@
                         <a class="header-box-link-list-item" href="http://github.com/{text:Github Username}">Github</a>
                         <a class="header-box-link-list-item" href="http://alexlitel.tumblr.com/tagged/art">Art</a>
                     </nav>
-                    <div class="header-box-form mobile-toggle">
+                    <div class="header-box-form mobile-toggle-hide">
                         <form action="/search" method="get">
                             <input class="field text header-box-input" id="q" name="q" title="Search" type="text" value="{SearchQuery}" placeholder="" />
                             <button class="field button header-box-submit" title="Search" type="submit" value="search posts">Search</button>
@@ -76,9 +75,9 @@
                 {/block:NoSearchResults} {/block:SearchPage} {block:TagPage}
                 <div class="search-tag-header tag-page-header">Posts tagged "{Tag}"</div>
                 {/block:TagPage} {block:Posts}
-                <article class="post">
+                <article class="post {PostType}-post">
                     {block:Text}
-                    <div class="text-post">
+                    <div class="post-content">
                         {block:Title}
                         <h1 class="text-post-title">
                         <a href="{Permalink}">{Title}</a>
@@ -88,39 +87,39 @@
                         </div>
                     </div>
                     {/block:Text} {block:Photo}
-                    <div class="photo-post">
+                    <div class="post-content">
                         {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag} {block:Caption}
                         <div class="post-text">{Caption}</div>
                         {/block:Caption}
                     </div>
                     {/block:Photo} {block:Photoset}
-                    <div class="photoset-post">
+                    <div class="post-content">
                         {Photoset} {block:Caption}
                         <div class="post-text">{Caption}</div>
                         {/block:Caption}
                     </div>
                     {/block:Photoset} {block:Panorama}
-                    <div class="panorama-post">
+                    <div class="post-content">
                         {LinkOpenTag}
                         <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" /> {LinkCloseTag} {block:Caption}
                         <div class="post-text">{Caption}</div>
                         {/block:Caption}
                     </div>
                     {/block:Panorama} {block:Quote}
-                    <div class="quote-post">
+                    <div class="post-content">
                         <blockquote class="quote-post-quote">{Quote}</blockquote>
                         {block:Source}
                         <div class="post-text"> {Source} </div>
                         {/block:Source}
                     </div>
                     {/block:Quote} {block:Link}
-                    <div class="link-post">
+                    <div class="post-content">
                         <h1 class="link-post-link"><a href="{URL}">{Name}</a></h1> {block:Description}
                         <div class="post-text">{Description}</div>
                         {/block:Description}
                     </div>
                     {/block:Link} {block:Chat}
-                    <div class="chat-post">
+                    <div class="post-content">
                         {block:Title}
                         <h1 class="chat-post-title"><a href="{Permalink}">{Title}</a></h1> {/block:Title}
                         <ul class="chat-post-chat">
@@ -132,17 +131,27 @@
                         </ul>
                     </div>
                     {/block:Chat} {block:Audio}
-                    <div class="audio-post">
+                    <div class="post-content">
                         {block:AudioPlayer}
                         <div class="audio-post-data">
+                            <div class="audio-post-data-text">
+                            {block:Artist}
+                            <div class="audio-post-data-text-artist"><span class="audio-post-data-text-label">Artist</span>{Artist}</div>
+                            {/block:Artist} 
                             {block:TrackName}
-                            <div class="audio-post-data-song-title">"{TrackName}"</div>
-                            {/block:TrackName} {block:Artist}
-                            <div class="audio-post-data-artist">{Artist}</div>
-                            {/block:Artist} {block:AlbumArt}
-                            <img class="audio-post-data-album-art" src="{AlbumArtURL}" /> {/block:AlbumArt}
+                            <div class="audio-post-data-text-song-title"><span class="audio-post-data-text-label">Song</span>{TrackName}</div>
+                            {/block:TrackName} 
+                            {block:Album}
+                            <div class="audio-post-data-text-album"><span class="audio-post-data-text-label">Album</span>{Album}</div>
+                            {/block:Album} 
+                            </div>
+                            <div class="audio-post-data-other"> 
+                        {block:AlbumArt}
+                        <div class="audio-post-data-other-album-art">
+                            <img class="audio-post-data-other-album-art-image" src="{AlbumArtURL}" alt="Album art for {Album}"/> </div>{/block:AlbumArt}
+                            <div class="audio-post-data-other-native-player">{AudioPlayer}</div>
                         </div>
-                        <div class="audio-post-native-player">{AudioPlayer}</div>
+                            </div>
                         {/block:AudioPlayer} {block:AudioEmbed}
                         <div class="audio-post-embed">{AudioEmbed}</div>
                         {/block:AudioEmbed} {block:Caption}
@@ -150,14 +159,14 @@
                         {/block:Caption}
                     </div>
                     {/block:Audio} {block:Video}
-                    <div class="video-post">
+                    <div class="post-content">
                         <div class="video-post-layer">{Video-500}</div>
                         {block:Caption}
                         <div class="post-text">{Caption}</div>
                         {/block:Caption}
                     </div>
                     {/block:Video} {block:Answer}
-                    <div class="answer-post">
+                    <div class="post-content">
                         <div class="answer-user">
                             <span class="asker-name">{Asker}</span> <span class="asker-asked">asked:</span>
                         </div>
@@ -173,9 +182,8 @@
                             </time>
                             {/block:Date}
                             <span class="post-footer-text post-footer-note-count">
-                        <a href="{Permalink}">{NoteCountWithLabel}</a>
-                         {block:RebloggedFrom} <span class="post-footer-text post-footer-attrib">(via <a href="{ReblogParentURL}">{ReblogParentName}</a>)</span>  {/block:RebloggedFrom}
-                    </span>
+                        <a href="{Permalink}">{NoteCountWithLabel}</a></span> {block:RebloggedFrom} <span class="post-footer-text post-footer-attrib">(via <a href="{ReblogParentURL}">{ReblogParentName}</a>)</span> {/block:RebloggedFrom}
+                            </span>
                         </div>
                         {block:HasTags}
                         <div class="post-footer-row-tags">
@@ -221,36 +229,28 @@
                     {/block:Pagination}
                     <div class="theme-credit">Powered by the <a href="http://www.github.com">minimalish theme</a></div>
                 </footer>
+            </div>
+        </div>
+    </div>
+    </div>
 </body>
 
+{block:IfGoogleAnalyticsID}
 <script>
-    function resizePhotosets(){
-    var parentWidth = document.body.querySelector('.html_photoset').offsetWidth; 
-    var photosets = document.body.querySelectorAll('iframe.photoset');
-    for(var i = 0; i < photosets.length; ++i){
-        var photoset = photosets[i];
-        photoset.width = parentWidth;
-    }   
-}
-window.onload = resizePhotosets;
-window.onresize = resizePhotosets;
+(function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', '{text:Google Analytics ID}', 'auto');
+ga('send', 'pageview');
 </script>
+{/block:IfGoogleAnalyticsID}
 
- {block:IfGoogleAnalyticsID}
-    <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', '{text:Google Analytics ID}', 'auto');
-    ga('send', 'pageview');
-    </script>
-    {/block:IfGoogleAnalyticsID}
 </html>

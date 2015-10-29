@@ -3,7 +3,7 @@
     height: 20%;
     z-index: 20;
     padding: 2px;
-    @media only screen and (max-width: 691px) {
+    @include m-q(max, $max: 691px) {
         background: white;
         height: auto;
     }

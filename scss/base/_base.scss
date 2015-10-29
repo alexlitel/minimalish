@@ -26,16 +26,23 @@ img, iframe {
   margin: 0 auto;
 }
 
+iframe.photoset {
+  @include m-q(max, $max: 500px) {
+    max-width: 350px;
+  }
+}
+
 iframe a, iframe a img {
   margin: 0 auto;
 }
+
 
 #wrapper {
   max-width: 2000px;
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 500px) {
+@include m-q(max, $max: 500px) {
   h1 {
     font-size: 1.5em;
   }

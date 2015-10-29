@@ -4,16 +4,19 @@
     width: 95%;
     max-width: 800px;
     position: relative;
-    clear: both;
     margin: 0 auto;
-    top: 31px;
-    @media only screen and (min-width: 720px) {
+
+    @include content-padding();
+    @include m-q(min, 692px) {
+          top: 31px;
+    }
+    @include m-q(min, 720px) {
         width: 85%;
     }
-    @media only screen and (min-width: 820px) {
+    @include m-q(min, 820px) {
         width: 75%;
     }
-    @media only screen and (min-width: 920px) {
+    @include m-q(min, 920px) {
         width: 65%;
     }
 }
