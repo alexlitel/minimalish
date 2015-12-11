@@ -5,8 +5,10 @@
     max-width: 800px;
     position: relative;
     margin: 0 auto;
+    word-wrap: break-word;
 
     @include content-padding();
+    
     @include m-q(min, 692px) {
           top: 31px;
     }

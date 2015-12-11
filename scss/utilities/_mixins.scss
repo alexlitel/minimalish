@@ -34,11 +34,13 @@
         @media only screen and (min-width: #{$min}) {
             @content;
         }
-    } @else if $size=="max" {
+    }
+    @else if $size=="max" {
         @media only screen and (max-width: #{$max}) {
             @content;
         }
-    } @else if $size=="minmax" {
+    }
+    @else if $size=="minmax" {
         @media only screen and (min-width: $min) and (max-width: $max) {
             @content;
         }
@@ -65,26 +67,46 @@
     }
 }
 
-
-
-
 // ==========================================================================
 // Padding for content area of sizes with fixed header
 // ==========================================================================
 @mixin content-padding() {
-  
-  $lengths: (
-    first: ( height: 71px, min-width: 235px,  max-width: 349px ),
-    second: ( height: 74px, min-width: 350px, max-width: 414px ),
-    third: ( height: 78px, min-width: 415px, max-width: 614px ),
-    last: ( height: 86px, min-width: 615px, max-width: 691px )
-);
+    $lengths: ( 
+        first: ( height: 71px, min-width: 235px, max-width: 349px), 
+        second: ( height: 74px, min-width: 350px, max-width: 414px), 
+        third: ( height: 78px, min-width: 415px, max-width: 614px), 
+        last: ( height: 86px, min-width: 615px, max-width: 691px)
+        );
 
- @each $length, $props in $lengths {
-    @include m-q(minmax, map-get($props, min-width), map-get($props, max-width)) {
-      padding-top: map-get($props, height);
+    @each $length,
+    $props in $lengths {
+        @include m-q(minmax, map-get($props, min-width), map-get($props, max-width)) {
+            padding-top: map-get($props, height);
+        }
     }
-  }
+}
+
+// ==========================================================================
+// Photoset grid mixins
+// ==========================================================================
+@mixin photoset-grids() {
+    @for $i from 1 through 4 {
+        &-cols-#{$i} {
+            .photoset-post-photoset-cell {
+                width: 100% / $i;
+                @content;
+            }
+        }
+    }
 }
 
 
+//Unused mixin for photoset borders
+@mixin photoset-borders() {
+ @for $i from 1 through 6 {
+    @include m-q(min, 300px + (60*$i)) {
+    padding: 2px + $i;
+    }
+ }
+} 
+ 

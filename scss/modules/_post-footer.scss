@@ -2,7 +2,7 @@
     text-align: center;
     position: relative;
     width: 100%;
-    padding: 22px 13px 0px;
+    padding: 22px 13px 0;
     &-row {
         &-datenotes,
         &-tags,
@@ -59,10 +59,11 @@
         border: 2px solid;
         left: -18px;
         padding: 2px;
-        color: rgba($p-color, 0.51);
+        color: rgba($p-color, 0.65);
         font-weight: bold;
         background: white;
         z-index: 10;
+        top: 25%;
     }
     &-list {
         list-style: none;

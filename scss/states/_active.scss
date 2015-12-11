@@ -3,27 +3,46 @@
 // ==========================================================================
 a:focus,
 a:hover,
-a:active,
 button:focus,
 input:focus {
     background: $act-color !important;
     color: $p-color !important;
-    .post & {
+    .post &, .post-notes-notes ol.notes li.note & {
         border-bottom: 2px solid;
+    }
+    .theme-credit & {
+        border-bottom: 1px solid;
     }
 }
 
-.photo-post > a,
-.panorama-post > a {
+.header-box-form button:hover {
+    text-decoration: underline;
+}
+
+.photo-post .post-content > a,
+.panorama-post .post-content > a,
+.photoset-post-photoset a {
     &:hover,
-    &:active,
     &:focus {
         border-bottom: none;
         img {
             background-color: $act-color;
             border-color: $act-color;
+            border-width: 0;
+            padding: 9px;
         }
     }
+}
+
+@include m-q(max, $max: 599px) {
+.photoset-post-photoset a {
+    &:hover,
+    &:focus {
+        img {
+            padding: 6px;
+        }
+    }
+}
 }
 
 .header-box-icon-menu,
@@ -35,10 +54,11 @@ input:focus {
             color: $p-color !important;
         }
     }
-}
-
-button:hover {
-    text-decoration: underline;
+    &:active {
+        &::before {
+            background: transparent !important;
+        }
+    }
 }
 
 // ==========================================================================
@@ -49,31 +69,29 @@ button:hover {
         display: none;
     }
 }
-
 .mobile-toggle {
     @include m-q(max, $max: 691px) {
-            &-hide {
-                display: none;
-            }
+        &-hide {
+            display: none;
         }
     }
-
+}
 @include m-q(max, $max: 691px) {
     .has-shadow {
-        box-shadow: 0px 5px 10px 0px rgba($p-color, .2);
+        box-shadow: 0 5px 10px 0 rgba($p-color, .2);
     }
+    
     .is-fixed {
         position: fixed;
         top: 0;
     }
+    
     .is-rotated {
         &::before {
             transform: rotateZ(90deg);
-            // transition: transform 2s;
         }
     }
 }
-
 // ==========================================================================
 // Post Share Icon Interaction States
 // ==========================================================================

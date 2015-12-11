@@ -9,7 +9,7 @@
     text-align: center;
 }
 
-[class^="header-box-row"] {
+.header-box-row-one, .header-box-row-two {
     margin: 0 auto;
     clear: both;
     position: relative;
@@ -193,5 +193,3 @@
         left: 10px;
     }
 }
-
-@include m-q(min, 1600px) {}

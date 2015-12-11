@@ -1,0 +1,54 @@
+.post-notes {
+    @include m-q(min, 600px) {
+        width: 75%;
+        margin: 0 auto;
+    }
+    &-status {
+        text-transform: uppercase;
+        font-size: 2em;
+        font-weight: 300;
+            margin: 0.41em auto;
+            text-align: center;
+        @include m-q(min, 600px) {
+            text-align: inherit;
+        }
+    }
+    &-notes {
+        max-width: 600px;
+        margin: 0 auto;
+        ol.notes {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0 auto;
+            li.note {
+                & + li.note {
+                    @include m-q(max, $max: 499px) {
+                    margin-top: .5em;
+                }
+                }
+                span {
+                    font-weight: 500;
+                }
+                a {
+                    font-weight: 600;
+                    border-bottom: 1px dotted;
+                }
+                img {
+                    display: none;
+                }
+                .answer_content, blockquote {
+                    display: block;
+                    border-left: solid 3px $bq-color;
+                    margin: 6px 0 6px 15px;
+                    padding: 0 0 0 15px;
+                    font-size: 90%;
+                    a {
+                        text-decoration: none;
+                        font-weight: normal;
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}
