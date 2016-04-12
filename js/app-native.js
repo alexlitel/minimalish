@@ -1,5 +1,7 @@
+//Tests and all that fun stuff
+(function() {
 //Code for hamburger menu and aria stuff. Based on hamburger example by http://heydonworks.com/practical_aria_examples/
-(function mobileToggle() {
+function mobileToggle() {
     var menuToggle = document.getElementById('menu-toggle'),
         searchToggle = document.getElementById('search-toggle');
     //Toggle event for menu
@@ -15,6 +17,7 @@
             menuToggle.title = "Click, tap, or press 'Enter' to show menu.";
             menuToggle.setAttribute('aria-expanded', 'false');
         }
+
     });
     //Toggle event for search
     searchToggle.addEventListener("click", function(event) {
@@ -30,7 +33,6 @@
             searchToggle.setAttribute('aria-expanded', 'false');
         }
     });
-
     //Refocus to hamburger icon after cycling through nav with tab
     document.getElementsByClassName('header-box-link-list-item')[document.getElementsByClassName('header-box-link-list-item').length - 1].addEventListener("keydown", function(event) {
         //Make sure event only runs if hamburger icon is visible, preventing obstacle to keyboard nav on higher resolution
@@ -38,8 +40,7 @@
             //Make sure user is not cycling backwards with shift+focus
             if (event.keyCode === 9 && !event.shiftKey) {
                 event.preventDefault();
-                menuToggle.focus();
-            }
+                menuToggle.focus();            }
         }
 
     });
@@ -55,10 +56,14 @@
             }
         }
     });
-}());
+}
+mobileToggle();
+
+
+
 
 //Native photosets function. Based on Jonathan Moore/Style Hatch's photoset-grid. http://stylehatch.github.com/photoset-grid/
-(function nativePhotos() {
+function nativePhotos() {
 
     //For each function 
     var forEach = function(array, callback, scope) {
@@ -79,6 +84,7 @@
                 //Converts photos in photoset to array
                 photos = photoset.querySelectorAll('.photoset-post-photoset-cell');
 
+
             // Creates divs for rows and wraps images in rows
             rows.forEach(function(row, jj) {
                 var rowStart = imageIndex,
@@ -91,39 +97,56 @@
                 //For loop to append image(s) to row
                 for (var k = rowStart; k < rowEnd; k++) {
                     rowEl.appendChild(photos[k]);
-                }
 
+                }
                 //append row to photoset
                 photoset.appendChild(rowEl);
                 // if (photoset.querySelectorAll('.photoset-post-photoset-row')[jj]) {
                 imageIndex = rowEnd;
 
+
             });
         });
+
+
+
+
     }
+
+
 
     //Size photorow heights based on shortest image if row has > 1 photo 
     function resizePhotoRows() {
         var photoRows = document.querySelectorAll('.photoset-post-photoset-row:not(.photoset-post-photoset-row-cols-1)');
-        forEach(photoRows, function(j, value) {
+        forEach(photoRows, function(j, photoRow) {
+        
             //set shortest image as initial image in row 
-            var shortestImage = photoRows[j].querySelectorAll('img')[0],
-                photos = photoRows[j].querySelectorAll('img');
-            //loop through photos to search for shortest image
-            for (var i = 0; i < photos.length; i++) {
-                if (photos[i].height < shortestImage.height) {
-                    shortestImage = photos[i];
+            var shortestHeight = 0,
+                photos = photoRow.querySelectorAll('img'),
+                loadCount = 0;
+        
+            //loop through photos in photoset
+            forEach(photos, function(l, photo) {
+               photo.onload = function(evt) {
+               var height = photo.height;
+               loadCount++;
+               //make sure shortest height is not zero and function does not return null values
+                if (height !== 0 && height < shortestHeight || height !== 0 && shortestHeight === 0) {
+                    shortestHeight = height;
                 }
-            }
-
-            photoRows[j].style.height = shortestImage.height + "px";
+                //size row upon all images being loaded
+                if (loadCount === photos.length) {
+                    photoRow.style.height = shortestHeight + "px";   
+                }
+               };
+            });
         });
     }
 
-    //Function for doing stuff when window loads
+    //Function for doing stuff when window loads;
     function init() {
         createLayout();
-        setTimeout(200, resizePhotoRows());
+        resizePhotoRows();
     }
 
     //'Debounce' function to reduce # of events fired upon resize. By David Walsh http://davidwalsh.name/javascript-debounce-function
@@ -151,4 +174,6 @@
         resizePhotoRows(document.querySelectorAll('.photoset-post-photoset-row'));
     }, 250));
 
+}
+nativePhotos();
 }());
